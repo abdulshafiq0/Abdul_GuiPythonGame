@@ -1,8 +1,1 @@
-a/b
-q/a
-b/b
-anushan/a
-hi/a
-bob/hi
-h/h
-z/z
+bye/bye

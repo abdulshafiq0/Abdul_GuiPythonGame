@@ -1,5 +1,5 @@
 from guizero import *
-
+from random import *
 
 
 name ="";
@@ -22,6 +22,7 @@ TBnewpassword =TextBox(NewUserF,width=25,grid=[1,2])
 TBnewcpassowrd =TextBox(NewUserF,width=25,grid=[1,3])
 
 GameF = App(title=name, width=300, height=175, layout="grid")
+Score = Text(GameF,text="Score = 0",grid=[3,0])
 GameF.hide()
 
 Msgbox = App(title = "Message",height = 75)
@@ -83,12 +84,50 @@ def BackToLogIN():
     TBnewusername.value=""
     TBnewcpassowrd.value = ""
     TBnewpassword.value = ""
+def ChooseRock():
+    Play(0)
+def ChoosePaper():
+    Play(1)
+def ChooseScissors():
+    Play(2)
+
+def Play(PlayerChoice):
+    choice = randint(0,2)
+    print(choice)
+    strp = Choice(PlayerChoice)
+    strc = Choice(choice)
+    if(choice == PlayerChoice):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So draw")
+    elif(choice ==0 and PlayerChoice==1):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So you win")
+    elif(choice == 0 and PlayerChoice == 2):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So your lose")
+    elif(choice ==1 and PlayerChoice == 0):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So you lose")
+    elif(choice ==1 and PlayerChoice == 2):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So you win")
+    elif(choice == 2 and PlayerChoice == 0):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So you win")
+    elif(choice ==2 and PlayerChoice ==1):
+        MessageBox("You chose "+strp+" Computer chose "+strc+" \n So you lose")
+
+def Choice(num):
+    if num == 0:
+        return "Rock"
+    elif num  ==1:
+        return "Paper"
+    elif num ==2:
+        return "Scissors"
 
 BTNClose = PushButton(Msgbox,command = MsgBoxClose,text="Ok",grid=[0,1])
 BTNConfirm = PushButton(LogIn,command = CheckUser,text="Confirm",grid=[1,4])
 BTNNewUser = PushButton(LogIn,command = NewUser,text="New User?",grid = [0,4])
 BTNnuConfirm = PushButton(NewUserF,command = MakeNewUser,text="Confirm",grid=[1,4])
 BTNBack = PushButton(NewUserF,command = BackToLogIN,text="Back To \n Log In",grid=[0,5])
+BTNRock = PushButton(GameF,command = ChooseRock ,text="Rock",grid=[0,0])
+BTNPaper = PushButton(GameF,command = ChoosePaper,text="Paper",grid=[0,1])
+BTNScissors = PushButton(GameF,command = ChooseScissors,text="Scissors",grid=[0,2])
+
 
 GetUsernames()
 
